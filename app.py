@@ -7,13 +7,12 @@ import plotly.express as px
 
 import csv, re, operator
 # from textblob import TextBlob
-
 app = Flask(__name__)
 
 person = {
     'first_name': '温砚',
     'last_name' : '',
-    'address' : 'Tsinghua University',
+    'address' : '湖北师范大学',
     'job': 'Python developer',
     'tel': '+86 173********',
     'email': '******@outlook.com',
@@ -53,26 +52,12 @@ person = {
     ],
     'education' : [
         {
-            'university': 'Tsinghua University',
-            'degree': 'School of computer and Information Engineering',
-            'description' : 'software engineering',
+            'university': '湖北师范大学',
+            'degree': '计算机与信息工程学院',
+            'description' : '软件工程',
             'mention' : 'Bien',
             'timeframe' : '2018-2022'
-        },
-        # {
-        #     'university': 'Paris Dauphine',
-        #     'degree': 'Master en Management global',
-        #     'description' : 'Fonctions supports (Marketing, Finance, Ressources Humaines, Comptabilité)',
-        #     'mention' : 'Bien',
-        #     'timeframe' : '2015'
-        # },
-        # {
-        #     'university': 'Paris Diderot',
-        #     'degree': 'Projets informatiques et Startégies d\'entreprise (PISE)',
-        #     'description' : 'Gestion de projets IT, Audit, Programmation',
-        #     'mention' : 'N/A',
-        #     'timeframe' : '2015 - 2016'
-        # }
+        }
     ],
     'programming_languages' : {
         'HMTL' : ['fa-html5', '100'],
@@ -86,15 +71,15 @@ person = {
         'NodeJS' : ['fa-node-js', '50']
     },
     'languages' : {'French' : 'Native', 'English' : 'Professional', 'Spanish' : 'Professional', 'Italian' : 'Limited Working Proficiency'},
-    'interests' : 'Dance、Travel、Languages'
+    'interests' : [{"inter":"旅行"},{"inter":"阅读"},{"inter":"学习"}],
+    'tec':[{"tech":'python'},{"tech":'爬虫'},{"tech":'flask'},{"tech":'scrapy'},{"tech":'selenium'}],
+    'evaluation':"本人能吃苦耐劳，适应性强，协调性好，对工作认真负责，工作积极、主动、上进，有良好的的心理素质，能正确的认识和评价自己，虚心接受他人的建议。拥有良好的表达和沟通能力，易于他人合作，形成融洽的合作关系。并有很强的团队合作精神和合作能力、注重工作效率。",
+    'cloud':'我们在排行榜页面可以很容易获得100条视频的url,将这些url循环访问网页，爬取每个视频的tag标签，由于bilibili的tag标签分为三种所以我总过对三种标签进行xpath爬取统一放进tag列表中表存到txt文件，然后通过jieba分词搜索引擎的方法对文本进行分割，然后在打开一张bilibili的图片，使得词云呈现效果如图片一般。，'
 }
 
 @app.route('/')
 def cv(person=person):
     return render_template('resume.html', person=person)
-
-
-
 
 @app.route('/callback', methods=['POST', 'GET'])
 def cb():
@@ -104,14 +89,27 @@ def cb():
 def index():
 	return render_template('chartsajax.html',  graphJSON=gm())
 
-def gm(country='United Kingdom'):
-	df = pd.DataFrame(px.data.gapminder())
+def gm(province='安徽'):
+	df = pd.read_csv('china_data_covid19.csv')
 
-	fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
-
+	fig = px.line(df, x="TIME", y=province)
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	return graphJSON
 
+
+@app.route('/bilibili_callback', methods=['POST', 'GET'])
+def db():
+	return xm(request.args.get('data'))
+
+@app.route('/bilibili')
+def index_bilibili():
+    return render_template('bilibili_video.html', graphJSON_1=xm())
+
+def xm(keyword='视频观看人数（万次）'):
+    df =pd.read_csv('video.csv')
+    fig = px.histogram(df, x="视频up主", y=keyword)
+    graphJSON_1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON_1
 
 @app.route('/senti')
 def main():

@@ -1,5 +1,5 @@
-# Responsive Resume Template
+# Live resume concept
 
-A Pen created on CodePen.io. Original URL: [https://codepen.io/mariosmaselli/pen/CDcmb](https://codepen.io/mariosmaselli/pen/CDcmb).
+A Pen created on CodePen.io. Original URL: [https://codepen.io/aja9104/pen/ukghm](https://codepen.io/aja9104/pen/ukghm).
 
-Responsive resume template, you just need to fill out the content with your own. 
+
