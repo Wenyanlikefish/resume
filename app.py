@@ -13,7 +13,7 @@ app = Flask(__name__)
 person = {
     'first_name': '温砚',
     'last_name' : '',
-    'address' : 'Tsinghua University',
+    'address' : 'Hubei Normal University',
     'job': 'Python developer',
     'tel': '+86 173********',
     'email': '******@outlook.com',
@@ -53,7 +53,7 @@ person = {
     ],
     'education' : [
         {
-            'university': 'Tsinghua University',
+            'university': 'Hubei Normal University',
             'degree': 'School of computer and Information Engineering',
             'description' : 'software engineering',
             'mention' : 'Bien',
