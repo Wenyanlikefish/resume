@@ -17,6 +17,32 @@
 
 
 </head>
+<style>
+    #div1{
+        height:1100px;
+    }
+
+    #div2{
+        height:800px;
+    }
+    .div2_1{
+        height:350px;
+    }
+
+    .div2_2{
+        width:470px;
+        float:right;
+    }
+
+
+
+
+
+
+
+
+
+</style>
 
 <body style="font-family:arial, sans-serif">
     <h1>哔哩哔哩热门视频排行榜数据</h1>
@@ -24,12 +50,55 @@
 
     <input type="text" id="fname" name="fname" onchange="db(this.value)">
     <div id="chart" class="chart"></div>
-    <section>
-        <h2>热门视频的标签生成词云图</h2>
-        <img src="../static/bilibili_video_tag_cloud.jpg" height="" width="" align="left"/>
-        <h2>热门视频标签出现次数最多的20个</h2>
-        <img src="../static/tag_pie.png" height="" width="" align="left"/>
-    </section>
+
+
+    <div>
+        <div id="div1">
+            <h2>热门视频的标签生成词云图</h2>
+            <img src="../static/bilibili_video_tag_cloud.jpg" height="" width="" align="left" />
+            <img src="../static/tag_pie.png" height="" width="" align="left" />
+        </div>
+
+
+
+    <div id="div2">
+        <h1>热门视频排行榜前6弹幕词云</h1>
+        <div class="div2_1">
+            <div class="div2_2">
+                <h2>课 堂 请 勿 对 对 子 【第二季】1</h2>
+                <img src="../static/bilibili_video_bullet1_cloud.jpg" alt="">
+            </div>
+
+            <div class="div2_2">
+                <h2>期 末 复 习 现 状</h2>
+                <img src="../static/bilibili_video_bullet2_cloud.jpg" alt="">
+            </div>
+
+            <div class="div2_2">
+                <h2>自制点火启动式火箭电脑机箱</h2>
+                <img src="../static/bilibili_video_bullet3_cloud.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="div2_1">
+            <div class="div2_2">
+                 <h2>INTO1-刘彰回来啦，用一个歌词vlog来跟大家聊聊最近～</h2>
+                 <img src="../static/bilibili_video_bullet4_cloud.jpg" alt="">
+            </div>
+
+            <div class="div2_2">
+                <h2>救命！蜜雪冰城的玩具太魔性了！</h2>
+                <img src="../static/bilibili_video_bullet5_cloud.jpg" alt="">
+            </div>
+
+            <div class="div2_2">
+                <h2>笑死！这玩意能骗我10w就离谱！！！</h2>
+                <img src="../static/bilibili_video_bullet6_cloud.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 
 <script>
