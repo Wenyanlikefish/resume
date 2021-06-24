@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/jquery-3.1.1.min.js"></script>
+    <script>
+        function db(selection) {
+            $.getJSON({
+                url: "/bilibili_callback", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart', result, {});;
+                }
+            });
+        }
+    </script>
+
+
+
+</head>
+
+<body style="font-family:arial, sans-serif">
+    <h1>哔哩哔哩热门视频排行榜数据</h1>
+    <h2>输入比较的数据（视频观看人数、视频综合得分、视频弹幕数量）</h2>
+
+    <input type="text" id="fname" name="fname" onchange="db(this.value)">
+    <div id="chart" class="chart"></div>
+    <section>
+        <h2>热门视频的标签生成词云图</h2>
+        <img src="../static/bilibili_video_tag_cloud.jpg" height="" width="" align="left"/>
+        <h2>热门视频标签出现次数最多的20个</h2>
+        <img src="../static/tag_pie.png" height="" width="" align="left"/>
+    </section>
+</body>
+
+<script>
+    d = {{ graphJSON_1 | safe }};
+    Plotly.newPlot('chart', d, {});
+</script>
+
+
+</html>
